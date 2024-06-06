@@ -1,0 +1,4 @@
+ipykernel
+pymdptoolbox
+matplotlib
+pandas
