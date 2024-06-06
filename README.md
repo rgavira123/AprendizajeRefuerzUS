@@ -6,20 +6,20 @@ Suponemos un mapa con obstáculos representado por una matriz binaria, donde 0 r
 
 El robot puede localizarse en cualquier celda libre de obstáculos y podrá desplazarse a cualquiera de las 8 celdas subyacentes, siempre que esté libre de obstáculos. Considerando una celda cono Pos. inicial, $P_{init}$, y una celda como posición final $P_{end}$, podemos definir el problema de la siiguiente manera:
 
-- **Matriz de ocupacion $O$ de $m$ filas por $n$ columnas**: Cada celda de la matriz contiene un 1 si la posición está ocupada por obstáculo o un 0 si está libre de obstáculos. Para evitar que el robot se salga del mapa, todo el contorno del mapa serán obstáculos. Es decir *la primera como la última fila de la matriz y la primera y última columna de la matriz tendrán el valor 1*.
+- **Matriz de ocupacion $O$ de $n$ filas por $m$ columnas**: Cada celda de la matriz contiene un 1 si la posición está ocupada por obstáculo o un 0 si está libre de obstáculos. Para evitar que el robot se salga del mapa, todo el contorno del mapa serán obstáculos. Es decir *la primera como la última fila de la matriz y la primera y última columna de la matriz tendrán el valor 1*.
 
 - **Posicion inicial $P_{init}$ = ($x_a$, $y_a$) y posición final $P_{end}$ = ($x_b$, $y_b$)**: Con 0 <= $x_a$, $x_b$ < $n$ y 0 <= $y_a$, $y_b$ < $m$. Ambas posiciones deben ser libres de obstáculos. La restricción con comparativos nos quiere indicar que las posiciones deben estar dentro de los limites del mapa.
 
-- **Conjunto de estados $S$** = {($x$, $y$) | 0 <= $x$ < $n$ y 0 <= $y$ < $m}. Son todas las posibles posiciones que ofrece el mapa y en las que se puede encontrar el robot. Es cierto que estos estados también incluyen celdas con obstáculos. Por definición no se impide que el robot se coloque en estas celdas con obstáculos, pero estará fuertemente penalizado cuando lo haga por la función de recompensa.
+- **Conjunto de estados $S$** = {($x$, $y$) | 0 <= $x$ < $n$ y 0 <= $y$ < $m$}. Son todas las posibles posiciones que ofrece el mapa y en las que se puede encontrar el robot. Es cierto que estos estados también incluyen celdas con obstáculos. Por definición no se impide que el robot se coloque en estas celdas con obstáculos, pero estará fuertemente penalizado cuando lo haga por la función de recompensa.
 
-- **Conjunto de acciones A**: {$N,NE,E,SE,S,SW,W,NW,wait $} que representan los movimientos en las 8 posibles direcciones. La acción *wait* se utiliza para indicar que el robot no se mueve, y se queda en la misma posición.
+- **Conjunto de acciones A**: {N,NE,E,SE,S,SW,W,NW,wait} que representan los movimientos en las 8 posibles direcciones. La acción *wait* se utiliza para indicar que el robot no se mueve, y se queda en la misma posición.
 
 - **Función de transición $T$**: $S$ x $A$ $\rightarrow$ $S$. Esta función nos indica el estado resultante al aplicar una acción. Esta acción será estocástica (no determinista, "aleatoria"), ya que modelizará un cierto error en la ejecución del movimiento y viene dado por $T(s,a)$ = $s'$ donde:
     - $s$ es el estado de partida.
     - $a$ es la acción a realizar.
     - $s'$ es el estado resultante después de realizar la acción $a$ en el estado $s$.
     - Si $s$ contiene obstáculos, entonces $s'$ = $s$ independientemente de la acción $a$. Si estamos sobre un obstáculo, no podemos movernos.
-    - Si $a$ = $wait", entonces $s'$ = $s$. El efecto de dicha acción es determinista
+    - Si $a$ = $wait$, entonces $s'$ = $s$. El efecto de dicha acción es determinista
     - Para el resto de acciones, si $s$ es libre de obstáculos, con una probabilidad de $1 - P_{error}$ se producirá el movimiento deseado. Dado $s$ = ($x$, $y$), vendrá definido por:
         -  Si $a$ = $N$, entonces $s'$ = ($x$, $y-1$).
         -  Si $a$ = $NE$, entonces $s'$ = ($x+1$, $y-1$).
