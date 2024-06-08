@@ -8,3 +8,9 @@ def calcula_dimensiones(transiciones):
     else:
         estados = transiciones[0].shape[0]
     return estados, acciones
+
+def politica_procesable(politica,acciones):
+    if isinstance(politica, dict):
+        return [acciones[i] for i in politica.values()]
+    else:
+        return [acciones[i] for i in politica]

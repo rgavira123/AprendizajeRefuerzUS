@@ -3,9 +3,12 @@
 from collections import defaultdict
 import numpy as np
 import matplotlib.pyplot as plt
-from util import calcula_dimensiones
+
+from .util import politica_procesable
+from .util import calcula_dimensiones
 
 class MonteCarlo:
+
     def __init__(self, transiciones, recompensas, politica0=None, factor_descuento=0.9, max_iteraciones=1000):
         self.transiciones = transiciones # Matriz de transición
         self.recompensas = recompensas # Recompensas
@@ -26,14 +29,17 @@ class MonteCarlo:
     
         return sum(self.recompensas[estado]) == 0
  
+
     def siguiente_estado(self,estado,accion):
         matriz_accion_elegida = self.transiciones[accion]
         posibles_siguientes_estados = matriz_accion_elegida[estado]
         return np.random.choice(range(self.estados), p=posibles_siguientes_estados)
     
+
     def recompensa_accion(self,estado,accion):
         return self.recompensas[estado][accion]
        
+
     def estado_aleatorio_no_terminal(self):
         estado = np.random.choice(range(self.estados))
         while self.es_terminal(estado):
@@ -61,6 +67,7 @@ class MonteCarlo:
 
         return episodio
 
+
     def entrenar_primera_visita(self):
         for _ in range(self.max_iteraciones + 1):
             episodio = self.generar_episodio()
@@ -74,6 +81,7 @@ class MonteCarlo:
                     self.q[estado][accion] = np.mean(self.racum[estado][accion])
                     self.politica[estado] = max(self.q[estado], key=self.q[estado].get)
 
+
     def entrenar_cada_visita(self):
         for _ in range(self.max_iteraciones + 1):
             episodio = self.generar_episodio()
@@ -85,9 +93,9 @@ class MonteCarlo:
                 self.politica[estado] = max(self.q[estado], key=self.q[estado].get)
         
 
-            
     def obtener_politica(self):
-        return self.politica
+        acciones = ['esperar','N','NE','E','SE','S','SO','O','NO']
+        return politica_procesable(self.politica,acciones)
 
 
         

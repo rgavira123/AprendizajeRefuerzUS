@@ -1,19 +1,25 @@
 import numpy as np
 import pandas as pd
 import math as math
-from util import *
+from .util import calcula_dimensiones
+from .util import politica_procesable
 
 class SARSA(object):
     def __init__(self, transiciones, recompensas, factor_descuento=0.5, factor_aprendizaje=0.9, max_iteraciones=1000, epsilon=0.1):
 
         self.estados,self.acciones = calcula_dimensiones(transiciones)
+        
         self.recompensas = recompensas
 
         self.factor_descuento = factor_descuento
         assert 0.0 < self.factor_descuento <= 1.0, "El valor del descuento debe estar entre 0 y 1"
+
         self.factor_aprendizaje = factor_aprendizaje
         assert 0.0 < self.factor_aprendizaje <= 1.0, "El valor del factor de aprendizaje debe estar entre 0 y 1"
+
         self.max_iteraciones = int(max_iteraciones)
+        assert self.max_iteraciones > 0, "El número máximo de iteraciones debe ser un entero positivo"
+
         self.epsilon = epsilon
         assert 0.0 < self.epsilon <= 1.0, "El valor de epsilon debe estar entre 0 y 1"
 
@@ -83,7 +89,9 @@ class SARSA(object):
         return self.Q
     
     def obtener_politica(self):
-        return {s: max(self.Q[s], key=self.Q[s].get) for s in range(self.estados)}
+        politica = {s: max(self.Q[s], key=self.Q[s].get) for s in range(self.estados)}
+        acciones = ['esperar','N','NE','E','SE','S','SO','O','NO']
+        return politica_procesable(politica,acciones)
 
 
                 
