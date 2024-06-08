@@ -1,6 +1,7 @@
 import numpy as np
 import math as math
 
+
 def calcula_dimensiones(transiciones):
     acciones = len(transiciones)
     if transiciones.ndim==3:

@@ -5,12 +5,73 @@ from .util import calcula_dimensiones
 from .util import politica_procesable
 
 class SARSA(object):
-    def __init__(self, transiciones, recompensas, factor_descuento=0.5, factor_aprendizaje=0.9, max_iteraciones=1000, epsilon=0.1):
 
-        self.estados,self.acciones = calcula_dimensiones(transiciones)
-        
+    """
+    Clase que implementa el algoritmo de SARSA para la resolución de problemas de aprendizaje por refuerzo.
+
+    Parámetros:
+    -----------
+    transiciones: List
+        Matriz de probabilidades de transición. Cada fila representa un estado y cada columna una acción.
+    
+    recompensas: List
+        Matriz de recompensas. Cada fila representa un estado y cada columna una acción.
+    
+    factor_descuento: float
+        Factor de descuento. Por defecto es 0.9.
+    
+    factor_aprendizaje: float
+        Factor de aprendizaje. Por defecto es 0.5.
+
+    max_iteraciones: int
+        Número máximo de iteraciones. Por defecto es 1000.
+    
+    epsilon: float
+        Probabilidad de exploración. Por defecto es 0.1.
+    
+    Atributos:
+    -----------
+
+    estados: int
+        Número de estados del problema.
+    
+    acciones: int
+        Número de acciones del problema.
+
+    Q: Dict
+        Diccionario que almacena los valores de la función Q para cada par (estado, acción).
+    
+    Métodos:
+    -----------
+
+    es_terminal(estado) -> bool
+        Comprueba si un estado es terminal. Consideramos que un estado es terminal si la suma de las recompensas asociadas a cada acción es 0.
+
+    seleccionar_accion(estado) -> int
+        Selecciona una acción en un estado dado siguiendo una política epsilon-greedy, es decir, 
+        con probabilidad 1-epsilon elige la acción con mayor valor Q y con probabilidad epsilon elige una acción aleatoria.
+    
+    siguiente_estado(estado, accion) -> int
+        Devuelve el siguiente estado tras ejecutar una acción en un estado dado, en este caso la eleccion del siguiente estado se ve afectada por la probabilidad de transición.
+        Cuanto mayor sea la probabilidad de transición, mayor será la probabilidad de que el siguiente estado sea el estado correspondiente a esa probabilidad.
+    
+    recompensa_accion(estado, accion) -> float
+        Devuelve la recompensa asociada a una acción en un estado dado.
+    
+    entrenar() -> Dict
+        Entrena el algoritmo de SARSA y devuelve la función Q aprendida. Con un criterio de parada basado en el número de iteraciones o 
+        cuando el contador sea múltiplo de 200, es decir, cada 200 iteraciones se detiene el entrenamiento para evitar bucles infinitos.
+    
+    obtener_politica() -> List
+        Devuelve la política óptima aprendida a partir de la función Q.
+    """
+
+    def __init__(self, transiciones, recompensas, factor_descuento=0.9, factor_aprendizaje=0.5, max_iteraciones=1000, epsilon=0.1):
+
+        self.transiciones = transiciones
         self.recompensas = recompensas
 
+    
         self.factor_descuento = factor_descuento
         assert 0.0 < self.factor_descuento <= 1.0, "El valor del descuento debe estar entre 0 y 1"
 
@@ -23,8 +84,10 @@ class SARSA(object):
         self.epsilon = epsilon
         assert 0.0 < self.epsilon <= 1.0, "El valor de epsilon debe estar entre 0 y 1"
 
+        self.estados,self.acciones = calcula_dimensiones(transiciones)
+
         self.Q = {s: {a: 0.0 for a in range(self.acciones)} for s in range(self.estados)}
-        self.transiciones = transiciones
+
 
     def es_terminal(self, estado):
         # el estado es un índice, de 0 a 756, entonces yo miro las recompensas en el indice de estado self.recompensas[estado]
