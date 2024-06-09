@@ -136,6 +136,8 @@ class SARSA(object):
         entero = 0
         for _ in range(self.max_iteraciones+1):
             estado = np.random.choice(range(self.estados))
+            while(self.es_terminal(estado)):
+                estado = np.random.choice(range(self.estados))
             while not self.es_terminal(estado):
                 accion = self.seleccionar_accion(estado)
                 siguiente_estado = self.siguiente_estado(estado,accion)  
@@ -145,11 +147,10 @@ class SARSA(object):
                 estado = siguiente_estado
                 accion = accion_prima
                 entero += 1
-                if(entero % 200 == 0):
+                if(entero % self.max_iteraciones*0.1 == 0):
                     break
 
-                
-        return self.Q
+            
     
     def obtener_politica(self):
         politica = {s: max(self.Q[s], key=self.Q[s].get) for s in range(self.estados)}

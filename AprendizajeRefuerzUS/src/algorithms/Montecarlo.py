@@ -14,13 +14,13 @@ class MonteCarlo:
 
     Parámetros:
     -----------
-    transiciones: List
+    transiciones: array
         Matriz de probabilidades de transición. Cada fila representa un estado y cada columna una acción.
     
-    recompensas: List
+    recompensas: array
         Matriz de recompensas. Cada fila representa un estado y cada columna una acción.
 
-    politica0: Dict
+    politica0: dict
         Política inicial. Si no se especifica, se inicializa aleatoriamente.
     
     factor_descuento: float
@@ -130,6 +130,8 @@ class MonteCarlo:
     def generar_episodio(self):
         episodio = [] # Lista de tuplas (estado, acción, recompensa)
         estado = self.estado_aleatorio_no_terminal() # Estado inicial
+        while(self.es_terminal(estado)):
+            estado = np.random.choice(range(self.estados))
         accion= np.random.choice(range(self.acciones))
         recompensa = self.recompensas[estado][accion]
         contador = 0
