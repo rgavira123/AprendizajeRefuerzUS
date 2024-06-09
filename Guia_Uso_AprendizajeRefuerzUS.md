@@ -119,9 +119,11 @@ modelo_mc = mc.MonteCarlo(transiciones, recompensas, max_iteraciones=10000)
 
 ## Normalmente la política nos entra de la forma [esperar,esperar,norte,...] pero esto no es procesable por el algoritmo, debe ser un diccionario, para ello podemos usar este método (por defecto hemos resuelto con greedy)
 
+from AprendizajeRefuerzUS.algorithms import util
+
 politica_greedy = problem.politica
 
-politica_procesable = utils.obtener_politica_final(politica_greedy)
+politica_procesable = util.obtener_politica_final(politica_greedy)
 
 ## Ahora ya podemos instanciar el algoritmo con la politica de exploración
 
