@@ -21,7 +21,7 @@ Para realizar las pruebas de los algoritmos se deberan seguir los siguientes pas
 4. En una celda de código instalaremos la biblioteca con el siguiente comando:
 
 ```python
-pip install ./AprendizajeRefuerzUS-0.1.0.tar.gz
+pip install AprendizajeRefuerzUS-0.1.0.tar.gz
 ```
 
 > **Nota:** Si quieres comprobar que la biblioteca se ha instalado correctamente, puedes ejecutar el siguiente comando:
