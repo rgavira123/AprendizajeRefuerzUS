@@ -1,4 +1,4 @@
-# GUÍA DE USO DE LA BIBLIOTECA APRENDIZAJE REFUERZO US
+# GUÍA DE USO DE LA BIBLIOTECA APRENDIZAJE REFUERZUS
 
 El objetivo de este documento es describir los pasos necesarios para utilizar los algoritmos:
 
