@@ -1,4 +1,4 @@
 ipykernel
 pymdptoolbox
 matplotlib
-pandas
+numpy

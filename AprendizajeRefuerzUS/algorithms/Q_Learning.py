@@ -11,10 +11,10 @@ class Q_Learning:
 
     Parámetros:
     -----------
-    transiciones: List
+    transiciones: array
         Matriz de probabilidades de transición. Cada fila representa un estado y cada columna una acción.
 
-    recompensas: List
+    recompensas: array
         Matriz de recompensas. Cada fila representa un estado y cada columna una acción.
     
     factor_descuento: float

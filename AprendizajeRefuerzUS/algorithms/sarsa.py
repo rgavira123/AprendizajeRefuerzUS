@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import math as math
 from .util import calcula_dimensiones
 from .util import politica_procesable
@@ -60,7 +59,7 @@ class SARSA(object):
     
     entrenar() -> Dict
         Entrena el algoritmo de SARSA y devuelve la función Q aprendida. Con un criterio de parada basado en el número de iteraciones o 
-        cuando el contador sea múltiplo de 200, es decir, cada 200 iteraciones se detiene el entrenamiento para evitar bucles infinitos.
+        cuando el contador de iteraciones sea múltiplo del 10% del número máximo de iteraciones.
     
     obtener_politica() -> List
         Devuelve la política óptima aprendida a partir de la función Q.

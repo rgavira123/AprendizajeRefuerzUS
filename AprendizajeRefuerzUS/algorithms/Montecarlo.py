@@ -14,6 +14,7 @@ class MonteCarlo:
 
     Parámetros:
     -----------
+    
     transiciones: array
         Matriz de probabilidades de transición. Cada fila representa un estado y cada columna una acción.
     
