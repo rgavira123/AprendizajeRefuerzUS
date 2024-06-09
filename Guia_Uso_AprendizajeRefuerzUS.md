@@ -18,17 +18,21 @@ Para realizar las pruebas de los algoritmos se deberan seguir los siguientes pas
 
 3. En tu direcotrio de trabajo, create un archivo .ipynb y añadir el tar.gz
 
-4. En una celda de código instalaremos la biblioteca con el siguiente comando:
+4. Instalaremos la biblioteca en nuestro entorno con el siguiente comando:
 
 ```python
-pip install AprendizajeRefuerzUS-0.1.0.tar.gz
+pip install AprendizajeRefuerzUS-0.1.0.tar.gz (ruta al .tar.gz)
 ```
 
-> **Nota:** Si quieres comprobar que la biblioteca se ha instalado correctamente, puedes ejecutar el siguiente comando:
+> **Nota:** Si quieres comprobar que la biblioteca se ha instalado correctamente, puedes ejecutar estos comandos:
 
 ```python
 pip show AprendizajeRefuerzUS
 ```
+```python
+pip list 
+```
+
 
 5. Importar la biblioteca en tu archivo .ipynb con el siguiente comando:
 
