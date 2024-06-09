@@ -1,4 +1,4 @@
-**ROBOT-APRENDIZAJE-REFUERZO** es un proyecto realizado para la asignatura de IA, de Ingeniería del Software en la Universidad de Sevilla. En este trabajo nos centraremos en aplicar el aprendizaje por refuerzo a la robótica móvil, donde un robot debe planificar una ruta en un entorno con obstáculos. 
+**AprendizajeRefuerzUS** es una librería realizada para la asignatura de IA, de Ingeniería del Software en la Universidad de Sevilla. En este trabajo nos centraremos en aplicar el aprendizaje por refuerzo a la robótica móvil, donde un robot debe planificar una ruta en un entorno con obstáculos.
 
 ## DEFINICIÓN DEL PROBLEMA
 
@@ -43,11 +43,13 @@ El robot puede localizarse en cualquier celda libre de obstáculos y podrá desp
         - $R(s,a)$ = $K1$ si $s$ ≠ $P_{end}$ y $a$ = $wait$.
         - $R(s,a)$ = $R(s)$ en cualquier otro caso.
         - $R(s)$ = $K2$ si $s$ es un obstáculo (Si la casilla tiene un 1 en la matriz).
-        - $R(s)$ = -$d$ si el estado $s$ no es un obstáculo, siendo $d$ la distancia Euclídea desde $s$ hasta el destino $P_{end}$.
+        - $R(s)$ = - $d$ si el estado $s$ no es un obstáculo, siendo $d$ la distancia Euclídea desde $s$ hasta el destino $P_{end}$.
 
         Los valores $K1$ y $K2$ deberán ser negativos. Se recibirá una penalización alta ($K2$) si el robot está en un obstáculo, y -$d$ que será menor cuanto más cerca estemos del destino. La penalización $K1$ es para que el robot no se quede esperando en una posición que no sea el destino. Usaremos $K1$ = -100, $K2$ = -1000
 
 ## ALGORITMOS UTILIZADOS
+
+Esta librería proporciona un marco para la resolución de este **problema** y la obteción de políticas usando los siguientes algoritmos:
 
 - Q-Learning y Monte-Carlo. (Temas de la asignatura)
 - Algoritmo SARSA [SARSA](https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf)
