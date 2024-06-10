@@ -1,4 +1,4 @@
-# GUÍA DE USO DE LA BIBLIOTECA APRENDIZAJE REFUERZO US
+# GUÍA DE USO DE LA BIBLIOTECA APRENDIZAJE REFUERZUS
 
 El objetivo de este documento es describir los pasos necesarios para utilizar los algoritmos:
 
@@ -18,17 +18,21 @@ Para realizar las pruebas de los algoritmos se deberan seguir los siguientes pas
 
 3. En tu direcotrio de trabajo, create un archivo .ipynb y añadir el tar.gz
 
-4. En una celda de código instalaremos la biblioteca con el siguiente comando:
+4. Instalaremos la biblioteca en nuestro entorno con el siguiente comando:
 
 ```python
-pip install ./AprendizajeRefuerzUS-0.1.0.tar.gz
+pip install AprendizajeRefuerzUS-0.1.0.tar.gz (ruta al .tar.gz)
 ```
 
-> **Nota:** Si quieres comprobar que la biblioteca se ha instalado correctamente, puedes ejecutar el siguiente comando:
+> **Nota:** Si quieres comprobar que la biblioteca se ha instalado correctamente, puedes ejecutar estos comandos:
 
 ```python
 pip show AprendizajeRefuerzUS
 ```
+```python
+pip list 
+```
+
 
 5. Importar la biblioteca en tu archivo .ipynb con el siguiente comando:
 
@@ -119,9 +123,11 @@ modelo_mc = mc.MonteCarlo(transiciones, recompensas, max_iteraciones=10000)
 
 ## Normalmente la política nos entra de la forma [esperar,esperar,norte,...] pero esto no es procesable por el algoritmo, debe ser un diccionario, para ello podemos usar este método (por defecto hemos resuelto con greedy)
 
+from AprendizajeRefuerzUS.algorithms import util
+
 politica_greedy = problem.politica
 
-politica_procesable = utils.obtener_politica_final(politica_greedy)
+politica_procesable = util.obtener_politica_final(politica_greedy)
 
 ## Ahora ya podemos instanciar el algoritmo con la politica de exploración
 
