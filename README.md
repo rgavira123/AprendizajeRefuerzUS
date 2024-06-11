@@ -12,14 +12,14 @@ El robot puede localizarse en cualquier celda libre de obstáculos y podrá desp
 
 - **Conjunto de estados $S$** = {($x$, $y$) | 0 <= $x$ < $n$ y 0 <= $y$ < $m$}. Son todas las posibles posiciones que ofrece el mapa y en las que se puede encontrar el robot. Es cierto que estos estados también incluyen celdas con obstáculos. Por definición no se impide que el robot se coloque en estas celdas con obstáculos, pero estará fuertemente penalizado cuando lo haga por la función de recompensa.
 
-- **Conjunto de acciones A**: {N,NE,E,SE,S,SW,W,NW,wait} que representan los movimientos en las 8 posibles direcciones. La acción *wait* se utiliza para indicar que el robot no se mueve, y se queda en la misma posición.
+- **Conjunto de acciones A**: {N,NE,E,SE,S,SO,O,NO,esperar} que representan los movimientos en las 8 posibles direcciones. La acción *esperar* se utiliza para indicar que el robot no se mueve, y se queda en la misma posición.
 
 - **Función de transición $T$**: $S$ x $A$ $\rightarrow$ $S$. Esta función nos indica el estado resultante al aplicar una acción. Esta acción será estocástica (no determinista, "aleatoria"), ya que modelizará un cierto error en la ejecución del movimiento y viene dado por $T(s,a)$ = $s'$ donde:
     - $s$ es el estado de partida.
     - $a$ es la acción a realizar.
     - $s'$ es el estado resultante después de realizar la acción $a$ en el estado $s$.
     - Si $s$ contiene obstáculos, entonces $s'$ = $s$ independientemente de la acción $a$. Si estamos sobre un obstáculo, no podemos movernos.
-    - Si $a$ = $wait$, entonces $s'$ = $s$. El efecto de dicha acción es determinista
+    - Si $a$ = $esperar$, entonces $s'$ = $s$. El efecto de dicha acción es determinista
     - Para el resto de acciones, si $s$ es libre de obstáculos, con una probabilidad de $1 - P_{error}$ se producirá el movimiento deseado. Dado $s$ = ($x$, $y$), vendrá definido por:
         -  Si $a$ = $N$, entonces $s'$ = ($x$, $y-1$).
         -  Si $a$ = $NE$, entonces $s'$ = ($x+1$, $y-1$).
@@ -40,7 +40,7 @@ El robot puede localizarse en cualquier celda libre de obstáculos y podrá desp
         - Si $a$ = $NO$, $a'$ podrá ser $N$ o $O$, con una probabilidad de $P_{error}/2$ cada uno.
 
     - **Función de recompensa** $R(s,a)$ tiene el siguiente valor:
-        - $R(s,a)$ = $K1$ si $s$ ≠ $P_{end}$ y $a$ = $wait$.
+        - $R(s,a)$ = $K1$ si $s$ ≠ $P_{end}$ y $a$ = $esperar$.
         - $R(s,a)$ = $R(s)$ en cualquier otro caso.
         - $R(s)$ = $K2$ si $s$ es un obstáculo (Si la casilla tiene un 1 en la matriz).
         - $R(s)$ = - $d$ si el estado $s$ no es un obstáculo, siendo $d$ la distancia Euclídea desde $s$ hasta el destino $P_{end}$.
