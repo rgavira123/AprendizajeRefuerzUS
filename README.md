@@ -26,18 +26,18 @@ El robot puede localizarse en cualquier celda libre de obstáculos y podrá desp
         -  Si $a$ = $E$, entonces $s'$ = ($x+1$, $y$).
         -  Si $a$ = $SE$, entonces $s'$ = ($x+1$, $y+1$).
         -  Si $a$ = $S$, entonces $s'$ = ($x$, $y+1$).
-        -  Si $a$ = $SW$, entonces $s'$ = ($x-1$, $y+1$).
-        -  Si $a$ = $W$, entonces $s'$ = ($x-1$, $y$).
-        -  Si $a$ = $NW$, entonces $s'$ = ($x-1$, $y-1$).
+        -  Si $a$ = $SO$, entonces $s'$ = ($x-1$, $y+1$).
+        -  Si $a$ = $O$, entonces $s'$ = ($x-1$, $y$).
+        -  Si $a$ = $NO$, entonces $s'$ = ($x-1$, $y-1$).
     - Por otra parte, con una probabilidad $P_{error}$, se producirá un movimiento de error $a'$ que vendrá dado con una desviación o a la izquierda o a la derecha sobre la dirección deseada, de forma equiprobable.
-        - Si $a$ = $N$, $a'$ podrá ser $NE$ o $NW$, con una probabilidad de $P_{error}/2$ cada uno. (Equiprobable)
+        - Si $a$ = $N$, $a'$ podrá ser $NE$ o $NO$, con una probabilidad de $P_{error}/2$ cada uno. (Equiprobable)
         - Si $a$ = $NE$, $a'$ podrá ser $N$ o $E$, con una probabilidad de $P_{error}/2$ cada uno.
         - Si $a$ = $E$, $a'$ podrá ser $NE$ o $SE$, con una probabilidad de $P_{error}/2$ cada uno.
         - Si $a$ = $SE$, $a'$ podrá ser $E$ o $S$, con una probabilidad de $P_{error}/2$ cada uno.
-        - Si $a$ = $S$, $a'$ podrá ser $SE$ o $SW$, con una probabilidad de $P_{error}/2$ cada uno.
-        - Si $a$ = $SW$, $a'$ podrá ser $E$ o $W$, con una probabilidad de $P_{error}/2$ cada uno.
-        - Si $a$ = $W$, $a'$ podrá ser $SW$ o $NW$, con una probabilidad de $P_{error}/2$ cada uno.
-        - Si $a$ = $NW$, $a'$ podrá ser $N$ o $W$, con una probabilidad de $P_{error}/2$ cada uno.
+        - Si $a$ = $S$, $a'$ podrá ser $SE$ o $SO$, con una probabilidad de $P_{error}/2$ cada uno.
+        - Si $a$ = $SO$, $a'$ podrá ser $E$ o $O$, con una probabilidad de $P_{error}/2$ cada uno.
+        - Si $a$ = $O$, $a'$ podrá ser $SO$ o $NO$, con una probabilidad de $P_{error}/2$ cada uno.
+        - Si $a$ = $NO$, $a'$ podrá ser $N$ o $O$, con una probabilidad de $P_{error}/2$ cada uno.
 
     - **Función de recompensa** $R(s,a)$ tiene el siguiente valor:
         - $R(s,a)$ = $K1$ si $s$ ≠ $P_{end}$ y $a$ = $wait$.
